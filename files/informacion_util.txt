@@ -1,0 +1,42 @@
+﻿UNAE
+    1. Sedes:
+        a) Casa Central: Padre Kreusser, entre Honorio González e Independencia Nacional. +595 71205454
+        b) Sede Colonias Unidas: Guillermo Closs c/Aviadores del Chaco - Hohenau | +595 775 232608
+        c) Sede Ciudad del Este: Avenida Los Yerbales esq. Quebracho - Área 1 | +595 982 704441
+
+Facultades de la UNAE:
+    1. FACAT (Facultad de Ciencias, Artes y Tecnología)
+        a) Carreras disponibles:
+            i. Diseño de Modas
+            ii. Diseño Gráfico
+            iii. Análisis de Sistemas Informáticos
+            iv. Arquitectura
+            v. Diseño y Animación Digital
+    1) FCJHS (Facultad de Ciencias Jurídicas, Humanas y Sociales)
+        a) Carreras disponibles:
+            a) Derecho
+            b) Psicopedagogía
+            c) Trabajo Social
+    2) FACVA (Facultad de Ciencias Veterinarias y Agrícolas)
+        a) Carreras disponibles:
+            a) Veterinaria
+            b) Administración de empresas agropecuarias
+    3) FACQUF (Facultad de Ciencias Químicas y Farmaceúticas)
+        a) Carreras disponibles:
+            a) Farmacia
+    4) FACEM (Facultad de Ciencias Empresariales)
+        a) Carreras disponibles:
+            a) Administración
+            b) Ingeniería Comercial
+            c) Contaduría Pública
+            d) Comercio Internacional
+            e) Relaciones Públicas e Institucionales
+            f) Hotelería y Turismo
+    5) ISEDE (Instituto Superior de Educación Divina Esperanza)
+        a) Carreras disponibles:
+            a) Ciencias Sociales
+            b) Educación Física
+            c) Educación Escolar Básica
+            d) Educación Inicial
+
+
