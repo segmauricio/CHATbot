@@ -1,4 +1,4 @@
-﻿UNAE
+UNAE
     1. Sedes:
         a) Casa Central: Padre Kreusser, entre Honorio González e Independencia Nacional. +595 71205454
         b) Sede Colonias Unidas: Guillermo Closs c/Aviadores del Chaco - Hohenau | +595 775 232608
@@ -12,31 +12,36 @@ Facultades de la UNAE:
             iii. Análisis de Sistemas Informáticos
             iv. Arquitectura
             v. Diseño y Animación Digital
+	b) Numero de secretaría: +111111
     1) FCJHS (Facultad de Ciencias Jurídicas, Humanas y Sociales)
         a) Carreras disponibles:
-            a) Derecho
-            b) Psicopedagogía
-            c) Trabajo Social
+            i. Derecho
+            ii. Psicopedagogía
+            Iii. Trabajo Social
+	b) Numero de secretaría: +22222
     2) FACVA (Facultad de Ciencias Veterinarias y Agrícolas)
         a) Carreras disponibles:
-            a) Veterinaria
-            b) Administración de empresas agropecuarias
+           i. Veterinaria
+           ii. Administración de empresas agropecuarias
+	b) Numero de secretaría: +33333
     3) FACQUF (Facultad de Ciencias Químicas y Farmaceúticas)
         a) Carreras disponibles:
-            a) Farmacia
+            i. Farmacia
+	b) Numero de secretaría: +44444
     4) FACEM (Facultad de Ciencias Empresariales)
         a) Carreras disponibles:
-            a) Administración
-            b) Ingeniería Comercial
-            c) Contaduría Pública
-            d) Comercio Internacional
-            e) Relaciones Públicas e Institucionales
-            f) Hotelería y Turismo
+            i. Administración
+            ii. Ingeniería Comercial
+            iii. Contaduría Pública
+            iv. Comercio Internacional
+            v. Relaciones Públicas e Institucionales
+            Vi. Hotelería y Turismo
+	b) Numero de secretaría: +55555
     5) ISEDE (Instituto Superior de Educación Divina Esperanza)
         a) Carreras disponibles:
-            a) Ciencias Sociales
-            b) Educación Física
-            c) Educación Escolar Básica
-            d) Educación Inicial
-
+            i. Ciencias Sociales
+            ii. Educación Física
+            iii. Educación Escolar Básica
+            Iv. Educación Inicial
+	b) Numero de secretaría: +6666
 
