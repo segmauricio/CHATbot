@@ -2,6 +2,7 @@ import os
 from flask import Flask, request, jsonify, render_template
 import openai
 from dotenv import load_dotenv
+import re
 
 # Load environment variables from .env file
 load_dotenv()
@@ -49,7 +50,8 @@ def chat():
 
         # Get the latest message from the assistant
         messages = client.beta.threads.messages.list(thread_id=thread.id)
-        bot_response = messages.data[0].content[0].text.value  # Extract response text
+        raw_text = messages.data[0].content[0].text.value # Extract response text
+        bot_response = re.sub(r"【\d+:\d+†source】", "", raw_text)  # Remove citations
 
         return jsonify({"response": bot_response})
 
