@@ -89,67 +89,81 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatBox = document.getElementById('chatBox');
-            const initialMessage = document.createElement('div');
-            initialMessage.className = 'message response-message';
-            initialMessage.textContent = 'Buenas! Soy tu UNAEmigo. Házme una pregunta sobre la Universidad Autónoma de Encarnación y te respondo en la brevedad posible.';
-            chatBox.appendChild(initialMessage);
-        });
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatBox = document.getElementById('chatBox');
+        const initialMessage = document.createElement('div');
+        initialMessage.className = 'message response-message';
+        initialMessage.textContent = 'Buenas! Soy tu UNAEmigo. Házme una pregunta sobre la Universidad Autónoma de Encarnación y te respondo en la brevedad posible.';
+        chatBox.appendChild(initialMessage);
+    });
 
-        document.getElementById('messageInput').addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        function sendMessage() {
-            const messageInput = document.getElementById('messageInput');
-            const chatBox = document.getElementById('chatBox');
-            const message = messageInput.value.trim();
-
-            if (message === '') return;
-
-            // Display user message
-            const userMessage = document.createElement('div');
-            userMessage.className = 'message user-message';
-            userMessage.textContent = message;
-            chatBox.appendChild(userMessage);
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            // Display loader for bot response
-            const loader = document.createElement('div');
-            loader.className = 'message response-message';
-            loader.innerHTML = '<div class="loader"></div>';
-            chatBox.appendChild(loader);
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            // Send message to server
-            fetch('/api', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ text: message })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Console log the response
-                console.log('Response from server:', data);
-                // Remove loader
-                chatBox.removeChild(loader);
-                // Display response message
-                const responseMessage = document.createElement('div');
-                responseMessage.className = 'message response-message';
-                responseMessage.textContent = data.response;
-                chatBox.appendChild(responseMessage);
-                chatBox.scrollTop = chatBox.scrollHeight;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                chatBox.removeChild(loader);
-            });
-            // Clear input
-            messageInput.value = '';
+    document.getElementById('messageInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
         }
-    </script>
+    });
+
+    function sendMessage() {
+        const messageInput = document.getElementById('messageInput');
+        const chatBox = document.getElementById('chatBox');
+        const message = messageInput.value.trim();
+
+        if (message === '') return;
+
+        // Display user message
+        const userMessage = document.createElement('div');
+        userMessage.className = 'message user-message';
+        userMessage.textContent = message;
+        chatBox.appendChild(userMessage);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Display loader for bot response
+        const loader = document.createElement('div');
+        loader.className = 'message response-message';
+        loader.innerHTML = '<div class="loader"></div>';
+        chatBox.appendChild(loader);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Send message to server
+        fetch('/api', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: message })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Console log the response
+            console.log('Response from server:', data);
+            // Remove loader
+            chatBox.removeChild(loader);
+            // Display response message
+            const responseMessage = document.createElement('div');
+            responseMessage.className = 'message response-message';
+            responseMessage.textContent = data.response;
+            chatBox.appendChild(responseMessage);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Check if the response contains a phone number
+            const phoneNumberMatch = data.response.match(/\+?\d+/);
+            if (phoneNumberMatch) {
+                const phoneNumber = phoneNumberMatch[0];
+                const whatsappButton = document.createElement('button');
+                whatsappButton.className = 'btn btn-success';
+                whatsappButton.innerHTML = '<i class="mdi mdi-whatsapp"></i> Ir a WhatsApp';
+                whatsappButton.onclick = function() {
+                    window.open(`https://wa.me/${phoneNumber}`, '_blank');
+                };
+                chatBox.appendChild(whatsappButton);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            chatBox.removeChild(loader);
+        });
+        // Clear input
+        messageInput.value = '';
+    }
+</script>
 </body>
 </html>
