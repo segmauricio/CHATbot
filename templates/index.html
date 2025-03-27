@@ -35,7 +35,7 @@
         .chat-box {
             display: flex;
             flex-direction: column;
-            height: 300px;
+            height: 400px;
             overflow-y: auto;
             padding: 10px;
             border-bottom: 1px solid #ccc;
@@ -57,12 +57,21 @@
             max-width: 80%;
         }
         .whatsapp-button {
-            margin-top: -5px;
+            margin-top: -10px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
             width: 80%;
             margin-left: 5px;
             margin-right: 4px;
+        }
+        .whatsapp-button-list {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 5px;
+        }
+        .whatsapp-button i {
+            margin-right: 8px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -146,36 +155,72 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Remove loader
                 chatBox.removeChild(loader);
 
-                // Create wrapper for response and potential WhatsApp button
+                // Create wrapper for response and potential WhatsApp buttons
                 const responseWrapper = document.createElement('div');
                 responseWrapper.className = 'response-wrapper';
 
                 // Create response message
                 const responseMessage = document.createElement('div');
                 responseMessage.className = 'message response-message';
-                responseMessage.style.borderBottomLeftRadius = '0';
-                responseMessage.style.borderBottomRightRadius = '0';
-                responseMessage.style.marginBottom = '0';
-                responseMessage.textContent = data.response;
-                responseWrapper.appendChild(responseMessage);
 
-                // Check if the response contains a phone number
-                const phoneNumberMatch = data.response.match(/\+?\d+/);
-                if (phoneNumberMatch) {
-                    const phoneNumber = phoneNumberMatch[0];
-                    const whatsappButton = document.createElement('button');
-                    whatsappButton.className = 'btn btn-success whatsapp-button';
-                    whatsappButton.innerHTML = '<i class="mdi mdi-whatsapp"></i> Ir a WhatsApp';
-                    whatsappButton.onclick = function() {
-                        window.open(`https://wa.me/${phoneNumber}`, '_blank');
-                    };
-                   responseWrapper.appendChild(whatsappButton);
+                // First try to find agent-style matches (name: phone)
+                const agentMatches = Array.from(data.response.matchAll(/([^:]+):\s*(\+?\d+)/g));
+
+                if (agentMatches.length > 0) {
+                    // Get the text before the first numbered item
+                    const introText = data.response.split(/\n\d\./)[0];
+
+                    // Create and append intro message
+                    const responseMessage = document.createElement('div');
+                    responseMessage.className = 'message response-message';
+                    responseMessage.textContent = introText.trim();
+                    responseWrapper.appendChild(responseMessage);
+
+                    // Create button list
+                    const buttonList = document.createElement('div');
+                    buttonList.className = 'whatsapp-button-list';
+
+                    // Extract only the numbered agent entries
+                    const agentList = data.response.match(/\d\.\s+[^:]+:\s*\+?\d+/g) || [];
+
+                    agentList.forEach(agent => {
+                        const [name, phone] = agent.split(':').map(s => s.trim());
+                        const cleanName = name.replace(/^\d+\.\s+/, '');
+                        const whatsappButton = document.createElement('button');
+                        whatsappButton.className = 'btn btn-success whatsapp-button';
+                        whatsappButton.innerHTML = `<i class="mdi mdi-whatsapp"></i>${cleanName}`;
+                        whatsappButton.onclick = function() {
+                            window.open(`https://wa.me/${phone}`, '_blank');
+                        };
+                        buttonList.appendChild(whatsappButton);
+                    });
+
+                    responseWrapper.appendChild(buttonList);
+                } else {
+                    responseMessage.textContent = data.response;
+                    responseWrapper.appendChild(responseMessage);
+
+                    // Check for a single phone number
+                    const phoneMatch = data.response.match(/\+?\d+/);
+                    if (phoneMatch) {
+                        const phoneNumber = phoneMatch[0];
+                        const whatsappButton = document.createElement('button');
+                        whatsappButton.className = 'btn btn-success whatsapp-button';
+                        whatsappButton.style.marginTop = '-11px';
+                        whatsappButton.style.borderTopLeftRadius = '0';
+                        whatsappButton.style.borderTopRightRadius = '0';
+                        whatsappButton.innerHTML = '<i class="mdi mdi-whatsapp"></i>Ir a WhatsApp';
+                        whatsappButton.onclick = function() {
+                            window.open(`https://wa.me/${phoneNumber.trim()}`, '_blank');
+                        };
+                        responseWrapper.appendChild(whatsappButton);
+                    }
                 }
+
                 chatBox.appendChild(responseWrapper);
-        chatBox.scrollTop = chatBox.scrollHeight;
+                chatBox.scrollTop = chatBox.scrollHeight;
             })
 
             .catch(error => {
