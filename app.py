@@ -59,6 +59,45 @@ def chat():
         print(f"Error: {str(e)}")
         return jsonify({"response": f"Error: {str(e)}"}), 500
 
+
+@app.route('/get_faqs')
+def get_faqs():
+    faqs = []
+    try:
+        with open('files/preguntas_frecuentes.txt', 'r', encoding='utf-8') as file:
+            content = file.read().strip()
+            # Remove BOM if present
+            content = content.lstrip('\ufeff')
+
+            # Split questions by numbered pattern and newlines
+            questions = re.split(r'\n\s*(?=\d+\.|\?)', content)
+
+            for q in questions:
+                if not q.strip():
+                    continue
+
+                # Remove question number if present
+                q = re.sub(r'^\d+\.\s*', '', q)
+
+                # Split into question and answer
+                parts = q.split('\n', 1)
+                if len(parts) == 2:
+                    question = parts[0].strip()
+                    # Add question mark if missing
+                    if not question.endswith('?'):
+                        question += '?'
+                    answer = parts[1].strip()
+
+                    faqs.append({
+                        'question': question,
+                        'answer': answer
+                    })
+
+    except FileNotFoundError:
+        return jsonify([])
+
+    return jsonify(faqs)
+
 if __name__ == '__main__':
     app.run(debug=True)
 
