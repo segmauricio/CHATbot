@@ -19,7 +19,7 @@ Carreras a Distancia (EaD):
 
 Para obtener una lista completa y actualizada de las carreras, te recomiendo visitar el sitio web oficial de la UNAE: unae.edu.py
 
-2. ¿Qué costo tienen las carreras?
+2. ¿Qué costo tienen las carreras de grado?
 Los costos de matrícula y aranceles pueden variar según la carrera y la modalidad de estudio. Para obtener información precisa y actualizada sobre los costos, es recomendable contactar directamente a la UNAE a través de sus canales oficiales.
 
 3. ¿La universidad tiene becas?
@@ -67,6 +67,6 @@ La habilitación de las carreras por el Ministerio de Educación y Ciencias (MEC
 16. ¿La carrera está habilitada por el ANEAES?
 La Agencia Nacional de Evaluación y Acreditación de la Educación Superior (ANEAES) es responsable de la acreditación de programas. Para conocer el estado de acreditación de una carrera específica, es aconsejable consultar con la UNAE
 
-
-
+17. Cuanto cuesta la carrera de Analisis de sistemas?
+550.000gs mensual
 

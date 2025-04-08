@@ -7,7 +7,7 @@ UNAE
 Facultades de la UNAE:
     1. FACAT (Facultad de Ciencias, Artes y Tecnología)
         a) Carreras disponibles:
-            i. Diseño de Modas
+            i. Diseño de Modas, duracion 4 años y medio
             ii. Diseño Gráfico
             iii. Análisis de Sistemas Informáticos
             iv. Arquitectura
