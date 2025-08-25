@@ -2,7 +2,7 @@
 
 ## Requisitos previos
 
-- Python 3.8 o superior
+- Python 3.13.7 o superior
 - Git
 
 ## Pasos de instalación
